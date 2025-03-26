@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teto world domination! ^w^</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            background: #2a0a0a;
+        }
+
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            filter: blur(8px) brightness(0.7);
+            z-index: -1;
+        }
+
+        .container {
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-box {
+            background: rgba(255, 220, 220, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            margin: 1rem;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeUp 1s 0.3s forwards;
+            border: 1px solid rgba(255, 200, 200, 0.2);
+            box-shadow: 0 8px 32px rgba(100, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 200, 200, 0.3);
+            object-fit: cover;
+            margin: -80px auto 1.5rem;
+            display: block;
+            box-shadow: 0 8px 20px rgba(100, 0, 0, 0.2);
+            transform: scale(0);
+            animation: avatarPop 0.6s 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        h1 {
+            color: #ffe6e6;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2.2em;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+		.bio-text {
+			color: #ffffff;
+			line-height: 1.6;
+			text-align: center;
+			margin-bottom: 2rem;
+			font-weight: 750;
+			text-shadow: 
+				0 0 1px rgba(150, 50, 50, 1),
+				0 0 2px rgba(200, 100, 100, 0.4);
+			-webkit-text-stroke: 0.3px rgba(255, 220, 220, 0.2);
+		}
+
+        .links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .link-btn {
+            background: rgba(255, 230, 230, 0.1);
+            border: 1px solid rgba(255, 200, 200, 0.3);
+            color: #ffe6e6;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(5px);
+			font-weight: 700;
+			-webkit-text-stroke: 0.3px rgba(0, 0, 0, 0.35);
+			text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+
+        }
+
+        .link-btn:hover {
+            background: rgba(255, 190, 190, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(150, 0, 0, 0.2);
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes avatarPop {
+            to {
+                transform: scale(1) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-box {
+                padding: 1.5rem;
+            }
+            
+            .avatar {
+                width: 100px;
+                height: 100px;
+                margin-top: -70px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .bio-text {
+                font-size: 0.9em;
+            }
+            
+            .link-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <video class="video-bg" autoplay muted loop>
+        <source src="https://x0.at/J9jZ.mp4" type="video/mp4">
+    </video>
+
+    <div class="container">
+        <div class="profile-box">
+            <img src="https://x0.at/GoMF.jpg" class="avatar" alt="avatar">
+            <h1>cuteness ?</h1>
+            <p class="bio-text">
+				Nickname: cuteness <br>
+                Name: unknown? <br>
+                Age: 15 (29.09) <br>
+				Languages: russian, english <br>
+				Begginer developer </> <br>
+                I am using userbot of Heroku <3
+            </p>
+            <div class="links">
+                <a href="https://t.me/im_cuteness" class="link-btn">Telegram</a>
+                <a href="https://t.me/infocuteness" class="link-btn">Additional info</a>
+                <a href="https://t.me/cuteness_modules" class="link-btn">Heroku modules</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.link-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / btn.offsetWidth - 0.5;
+                    const y = (e.clientY - rect.top) / btn.offsetHeight - 0.5;
+                    btn.style.transform = `perspective(1000px) rotateY(${x*8}deg) rotateX(${y*-8}deg) translateY(-2px)`;
+                });
+                
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
